@@ -1,0 +1,88 @@
+
+Assignment
+1.Explain GET and POST methods.
+GET and POST are two HTTP methods used to send data to a web server.
+
+The GET method is used to request data from the server. When a user clicks on a link, the browser sends a GET request to the server to retrieve the resource identified by the link. The data is appended to the URL as query parameters, which are visible in the browser's address bar. GET requests are typically used for retrieving data, but not for modifying it, since the data is exposed in the URL and can be easily manipulated by a user.
+
+The POST method, on the other hand, is used to submit data to the server to create or update a resource. When a user submits a form, the data is sent to the server using a POST request, and the data is included in the body of the request, rather than in the URL. POST requests are typically used for submitting data, such as user input, and are more secure than GET requests, since the data is not exposed in the URL.
+
+In summary, GET requests are used to retrieve data from the server, while POST requests are used to submit data to the server. GET requests are usually used for safe, read-only operations, while POST requests are used for data modifications or creation.
+
+2.Why is request used in Flask?
+In Flask, the request object is used to handle incoming HTTP requests from clients. The request object contains all the information sent by the client, including any data submitted in a form, cookies, and headers.
+
+The request object provides access to the parameters in the query string of a GET request and to the form data of a POST request. It also provides methods to handle file uploads and to read the values of cookies and headers. Additionally, the request object provides a secure way to access user data by filtering out potentially harmful characters or data.
+
+The request object is an essential part of handling client-server communication in Flask, and it allows developers to build dynamic and interactive web applications. By using the request object, Flask makes it easy to handle different types of client requests and to provide a secure way of handling user input.
+
+3.Why is redirect() used in Flask?
+In Flask, the redirect() function is used to redirect the client to a different URL. This is useful when a web application needs to redirect the user to a different page or route after a certain action has been performed, such as after submitting a form or logging in.
+
+The redirect() function returns an HTTP response with a 302 status code, which instructs the client to make a new request to the specified URL. The new URL can be either a relative or absolute URL, and it can be specified as a string or as a function that returns a string.
+
+Here's an example of how redirect() can be used in a Flask view function:
+
+from flask import Flask, redirect, url_for
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return 'Hello, World!'
+
+@app.route('/redirect')
+def redirect_example():
+    return redirect(url_for('index'))
+In this example, the redirect_example() function redirects the client to the index() function using the url_for() function to generate the URL. When a user navigates to the /redirect URL, the server will respond with a redirect to the / URL, which will display the 'Hello, World!' message.
+
+Overall, the redirect() function is an important tool for controlling the flow of a Flask application and providing a smooth user experience.
+
+4.What are templates in Flask? Why is the render_template() function used?
+In Flask, templates are files that contain HTML, CSS, and/or JavaScript code, along with placeholders for dynamic data that can be filled in by a Flask view function. Templates make it easy to create consistent, well-structured pages that can be customized for different use cases.
+
+The Flask framework includes a templating engine called Jinja2, which provides a powerful and flexible way to create templates that can be used with Flask. Jinja2 templates use a simple syntax for inserting dynamic content, including variables, loops, and conditional statements.
+
+The render_template() function in Flask is used to render a template and return it as an HTTP response to the client. The render_template() function takes the name of the template file and any data that should be inserted into the template as keyword arguments. Here's an example:
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    name = 'Alice'
+    return render_template('index.html', name=name)
+In this example, the index() function renders a template called index.html and passes in the variable name as a keyword argument. The name variable can then be used within the template to display the name of the current user, for example.
+
+Overall, the render_template() function is an essential tool for creating dynamic and personalized web pages with Flask. By using templates, Flask makes it easy to separate presentation and business logic, and to create reusable, modular components that can be customized for different use cases.
+
+5.Create a simple API. Use Postman to test it. Attach the screenshot of the output in the Jupyter Notebook.
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+@app.route('/hello', methods=['GET'])
+def hello():
+    name = request.args.get('name')
+    if name:
+        message = f'Hello, {name}!'
+    else:
+        message = 'Hello, World!'
+    return jsonify({'message': message})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+In this example, we have defined a simple API that responds to a GET request to the /hello route. The API expects a query parameter called name, and it returns a JSON object containing a message that includes the name if it is provided, or "Hello, World!" if it is not.
+
+To test this API using Postman, you can follow these steps:
+
+Open Postman and create a new request.
+Set the request method to GET.
+Set the request URL to http://localhost:5000/hello.
+Add a query parameter called name and set its value to your name (or any other value).
+Click the Send button to make the request.
+The response from the server will be displayed in the Response panel in Postman.
+You should see a JSON response containing a message that includes the name you provided (or "Hello, World!" if no name was provided).
+
+ 
