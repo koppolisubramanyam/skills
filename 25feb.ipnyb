@@ -1,0 +1,238 @@
+
+Assignment
+Consider following code to answer further questions:
+ import pandas as pd
+ course_name = [‘Data Science’, ‘Machine Learning’, ‘Big Data’, ‘Data Engineer’]
+ duration = [2,3,6,4]
+ df = pd.DataFrame(data = {‘course_name’ : course_name, ‘duration’ : duration})
+1.Write a code to print the data present in the second row of the dataframe, df.
+import pandas as pd
+course_name = ['Data Science', 'Machine Learning', 'Big Data', 'Data Engineer']
+duration = [2,3,6,4]
+df = pd.DataFrame(data = {'course_name' : course_name, 'duration' : duration})
+print(df.iloc[1,:])
+course_name    Machine Learning
+duration                      3
+Name: 1, dtype: object
+2.What is the difference between the functions loc and iloc in pandas.DataFrame?
+loc and iloc are two methods provided by the pandas library in Python to access and manipulate data in a pandas DataFrame.
+
+The loc method is used to access data in a DataFrame based on the labels of the rows and columns. It takes two parameters, the row label(s) and column label(s), and returns the data at the specified location. The row and column labels can be either a single label or a list of labels. For example, df.loc[0, 'column_name'] returns the data at the first row and the specified column, while df.loc[[0, 1, 2], ['column_1', 'column_2']] returns the data in the specified rows and columns.
+
+On the other hand, the iloc method is used to access data in a DataFrame based on the integer position of the rows and columns. It takes two parameters, the row position(s) and column position(s), and returns the data at the specified location. The row and column positions can be either a single position or a list of positions. For example, df.iloc[0, 1] returns the data at the first row and the second column, while df.iloc[[0, 1, 2], [0, 1]] returns the data in the specified rows and columns based on their integer position.
+
+In summary, the main difference between the loc and iloc methods is that loc uses labels to access data, while iloc uses integer positions. Therefore, loc is used to access data by label, and iloc is used to access data by integer position.
+
+3.Reindex the given dataframe using a variable, reindex = [3,0,1,2] and store it in the variable, new_df then find the output for both new_df.loc[2] and new_df.iloc[2].
+Did you observe any difference in both the outputs? If so then explain it.Consider the below code to answer further questions:
+    import pandas as pd
+    import numpy as np
+    columns = ['column_1', 'column_2', 'column_3', 'column_4', 'column_5', 'column_6']
+    indices = [1,2,3,4,5,6]
+    #Creating a dataframe:
+    df1 = pd.DataFrame(np.random.rand(6,6), columns = columns, index = indices)
+import pandas as pd
+import numpy as np
+columns = ['column_1', 'column_2', 'column_3', 'column_4', 'column_5', 'column_6']
+indices = [1,2,3,4,5,6]
+#Creating a dataframe:
+df1 = pd.DataFrame(np.random.rand(6,6), columns = columns, index = indices)
+To reindex the given DataFrame based on the list [3, 0, 1, 2], you can use the reindex method of the DataFrame and pass the list as an argument. The code to reindex the DataFrame and store it in a new variable new_df would be:
+
+new_df = df1.reindex([3, 0, 1, 2])
+To find the output for new_df.loc[2], you can use the loc method of the DataFrame, which uses the labels of the rows and columns to access the data. The code to find the output for this would be:
+
+print(new_df.loc[2])
+column_1    0.120033
+column_2    0.295954
+column_3    0.164860
+column_4    0.893873
+column_5    0.137389
+column_6    0.665487
+Name: 2, dtype: float64
+To find the output for new_df.iloc[2], you can use the iloc method of the DataFrame, which uses the integer position of the rows and columns to access the data. The code to find the output for this would be:
+
+print(new_df.iloc[2])
+column_1    0.499846
+column_2    0.031274
+column_3    0.055645
+column_4    0.622655
+column_5    0.388486
+column_6    0.092431
+Name: 1, dtype: float64
+4.Write a code to find the following statistical measurements for the above dataframe df1:
+mean of each and every column present in the dataframe.
+standard deviation of column, ‘column_2’
+To find the mean of each column in the DataFrame df1, you can use the mean method of the DataFrame. The code to find the mean of each column would be:
+
+print(df1.mean())
+column_1    0.409771
+column_2    0.400872
+column_3    0.524118
+column_4    0.584002
+column_5    0.519066
+column_6    0.442374
+dtype: float64
+To find the standard deviation of the column 'column_2', you can use the std method of the DataFrame and pass the column name as an argument. The code to find the standard deviation of the column 'column_2' would be:
+
+print(df1['column_2'].std())
+0.3913459496566047
+5.Q5. Replace the data present in the second row of column, ‘column_2’ by a string variable then find the mean of column, column_2.
+ If you are getting errors in executing it then explain why.
+[Hint: To replace the data use df1.loc[] and equate this to string data of your choice.]
+To replace the data in the second row of the column 'column_2' with a string variable, you can use the loc method of the DataFrame to access the cell and assign the new value to it. The code to replace the data in the second row of 'column_2' with a string variable would be:
+
+df1.loc[2, 'column_2'] = 'new string data'
+print(df1)
+   column_1         column_2  column_3  column_4  column_5  column_6
+1  0.499846         0.031274  0.055645  0.622655  0.388486  0.092431
+2  0.120033  new string data  0.164860  0.893873  0.137389  0.665487
+3  0.746740         0.006703  0.507551  0.694203  0.670271  0.262562
+4  0.702299         0.815521  0.902965  0.365791  0.911000  0.844768
+5  0.197948         0.321482  0.989799  0.055319  0.991476  0.125183
+6  0.191762         0.934297  0.523890  0.872170  0.015776  0.663816
+This will replace the data in the second row of the column 'column_2' with the string value 'new string data'.
+
+However, you cannot find the mean of the column 'column_2' after replacing the data with a string variable. This is because the mean method only works with numerical data, and a string value cannot be converted to a numerical value. Therefore, trying to find the mean of the column after replacing the data with a string variable will result in a TypeError.
+
+If you want to find the mean of the column 'column_2' after replacing the data with a string variable, you need to convert the string data to a numerical data type. You can do this by replacing the string value with a numerical value, such as an integer or a float. Once you have replaced the string value with a numerical value, you can find the mean of the column using the mean method.
+
+6.What do you understand about the windows function in pandas and list the types of windows functions?
+In pandas, the window function is a way of performing calculations on a subset of rows of a DataFrame. It allows you to compute a function over a sliding window of rows, where the size and shape of the window can be specified.
+
+There are several types of window functions in pandas, including:
+
+Rolling: The rolling function allows you to compute rolling statistics on a DataFrame or a Series. It takes a window size as an argument and calculates the statistic for each window.
+
+Expanding: The expanding function allows you to compute expanding statistics on a DataFrame or a Series. It calculates the statistic for all previous rows, from the start of the DataFrame or Series up to the current row.
+
+EWM (Exponentially Weighted Moving): The EWM function allows you to compute exponentially weighted moving statistics on a DataFrame or a Series. It calculates the statistic using an exponentially weighted moving window, where more weight is given to recent values.
+
+Groupby: The groupby function allows you to compute statistics on a DataFrame or a Series for each group defined by one or more columns. You can then apply a window function to the grouped data.
+
+Resample: The resample function allows you to resample a time series DataFrame or a Series to a specified frequency. You can then apply a window function to the resampled data.
+
+These window functions can be applied to a variety of statistical operations, including sum, mean, standard deviation, min, max, and many others. They are useful for analyzing time series data or any data where the order of the rows is significant.
+
+7.Write a code to print only the current month and year at the time of answering this question.
+[Hint: Use pandas.datetime function]
+
+import pandas as pd
+
+now = pd.datetime.now()
+
+current_month = now.month
+current_year = now.year
+
+print(f"Current month: {current_month}")
+print(f"Current year: {current_year}")
+Current month: 2
+Current year: 2023
+/tmp/ipykernel_784/2345928268.py:3: FutureWarning: The pandas.datetime class is deprecated and will be removed from pandas in a future version. Import from datetime module instead.
+  now = pd.datetime.now()
+we can use the timestamp function to perform above operation of printing the current month and year.
+import pandas as pd
+
+now = pd.Timestamp.now()
+
+current_month = now.month
+current_year = now.year
+
+print(f"Current month: {current_month}")
+print(f"Current year: {current_year}")
+Current month: 2
+Current year: 2023
+8.Write a Python program that takes in two dates as input (in the format YYYY-MM-DD) and calculates the difference between them in days, hours, and minutes using Pandas time delta. The program should prompt the user to enter the dates and display the result.
+import pandas as pd
+
+date1 = input("Enter the first date (YYYY-MM-DD): ")
+date2 = input("Enter the second date (YYYY-MM-DD): ")
+
+date1 = pd.Timestamp(date1)
+date2 = pd.Timestamp(date2)
+
+time_diff = date2 - date1
+
+days_diff = time_diff.days
+hours_diff = time_diff.seconds // 3600
+minutes_diff = (time_diff.seconds % 3600) // 60
+
+print(f"The time difference between {date1} and {date2} is:")
+print(f"{days_diff} days, {hours_diff} hours, and {minutes_diff} minutes")
+The time difference between 2020-01-01 00:00:00 and 2022-01-01 00:00:00 is:
+731 days, 0 hours, and 0 minutes
+9.Write a Python program that reads a CSV file containing categorical data and converts a specified column to a categorical data type. The program should prompt the user to enter the file path, column name, and category order, and then display the sorted data.
+import pandas as pd
+
+file_path = input("Enter the file path: ")
+
+df = pd.read_csv(file_path)
+
+column_name = input("Enter the column name: ")
+
+df[column_name] = pd.Categorical(df[column_name], categories=category_order)
+
+sorted_df = df.sort_values(by=[column_name])
+print(sorted_df)
+10. Write a Python program that reads a CSV file containing sales data for different products and visualizes the data using a stacked bar chart to show the sales of each product category over time. The program should prompt the user to enter the file path and display the chart.
+import pandas as pd
+import matplotlib.pyplot as plt
+
+file_path = input("Enter the file path: ")
+
+data = pd.read_csv(file_path)
+
+grouped_data = data.groupby(['Product Category', 'Date']).sum()
+
+stacked_data = grouped_data.unstack(level=0)['Sales']
+
+stacked_data.plot(kind='bar', stacked=True)
+
+plt.title('Sales by Product Category')
+plt.xlabel('Date')
+plt.ylabel
+11. You are given a CSV file containing student data that includes the student ID and their test score. Write a Python program that reads the CSV file, calculates the mean, median, and mode of the test scores, and displays the results in a table.
+ The program should do the following:
+ I Prompt the user to enter the file path of the CSV file containing the student data.
+ I Read the CSV file into a Pandas DataFrame.
+ I Calculate the mean, median, and mode of the test scores using Pandas tools.
+ I Display the mean, median, and mode in a table.
+ Assume the CSV file contains the following columns.
+ I Student ID: The ID of the student.
+ I Test Score: The score of the student's test. 
+ Example usage of the program:
+ Enter the file path of the CSV file containing the student data: student_data.csv
+ +-----------+--------+
+ | Statistic | Value |
+ +-----------+--------+
+ | Mean | 79.6 |
+ | Median | 82 |
+ | Mode | 85, 90 |
+ +-----------+--------+
+Assume that the CSV file student_data.csv contains the following data:
+Student ID,Test Score
+1,85
+2,90
+3,80
+4,75
+5,85
+6,82
+7,78
+8,85
+9,90
+10,85
+The program should calculate the mean, median, and mode of the test scores and display the results in a table.
+import pandas as pd
+
+file_path = input("Enter the file path of the CSV file containing the student data: ")
+
+df = pd.read_csv(file_path)
+
+mean_score = df["Test Score"].mean()
+median_score = df["Test Score"].median()
+mode_score = df["Test Score"].mode()[0]
+
+data = {"Metric": ["Mean", "Median", "Mode"], "Score": [mean_score, median_score, mode_score]}
+table = pd.DataFrame(data)
+print(table)
+ 
