@@ -1,0 +1,126 @@
+
+Assignment
+1.Create a vehicle class with an init method having instance variables as name_of_vehicle, max_speed and average_of_vehicle.
+class vechile:
+    def __init__(self, name_of_vehicle,max_speed, average_of_vehicle):
+      
+        self.name_of_vehicle=name_of_vehicle
+        self.max_speed=max_speed
+        self.average_of_vehicle=average_of_vehicle
+2.Create a child class car from the vehicle class created in Que 1, which will inherit the vehicle class. Create a method named seating_capacity which takes capacity as an argument and returns the name of the vehicle and its seating capacity.
+ class Vehicle:
+    def __init__(self, name_of_the_vehicle):
+        self.name_of_the_vehicle = name_of_the_vehicle
+  
+ class Car(Vehicle):
+    def __init__(self, name_of_the_vehicle ,capacity):
+        self.name_of_the_vehicle=name_of_the_vehicle
+        self.capacity = capacity
+
+    def seating_capacity(self):
+        return f"{self.name_of_the_vehicle} has a seating capacity of {self.capacity}."
+    
+my_car = Car("Thar", 5)
+print(my_car.seating_capacity())
+Thar has a seating capacity of 5.
+# we can use the super() function in above example
+class Vehicle:
+    def __init__(self, name_of_the_vehicle):
+        self.name_of_the_vehicle = name_of_the_vehicle
+
+class Car(Vehicle):
+    def __init__(self, name_of_the_vehicle, capacity):
+        super().__init__(name_of_the_vehicle)
+        self.capacity = capacity
+
+    def seating_capacity(self):
+        return f"{self.name_of_the_vehicle} has a seating capacity of {self.capacity}."
+
+my_car = Car("Thar", 5)
+print(my_car.seating_capacity())
+Thar has a seating capacity of 5.
+3.What is multiple inheritance? Write a python code to demonstrate multiple inheritance.
+     Multiple inheritance is a feature in object-oriented programming (OOP) that allows a class to inherit properties and behaviors from more than one parent class. In multiple inheritance, a derived class is created by inheriting properties and behaviors from multiple base classes, rather than just one base class as in single inheritance. This means that the derived class can inherit attributes, methods, and behaviors from multiple parent classes and can have a more complex and richer inheritance hierarchy. 
+
+
+    Multiple inheritance can be useful for creating more flexible and reusable code, as well as for modeling complex real-world relationships between objects. However, it can also lead to ambiguity and conflicts, particularly when the same property or method is defined in multiple parent classes, so its use should be carefully considered and properly managed.
+class parent1:
+    def method1(self):
+        print("Parent1 method1")
+        
+class parent2:
+    def method2(self):
+        print("Parent2 method2")
+        
+class child(parent1, parent2):
+    pass
+
+# create an object of Child class
+c = child()
+
+# call method1 from Parent1
+c.method1()
+
+# call method2 from Parent2
+c.method2()
+Parent1 method1
+Parent2 method2
+4.What are getter and setter in python? Create a class and create a getter and a setter method in this class.
+In Python, getters and setters are methods used to access and set the values of an object's properties, respectively. They allow you to control access to the properties and validate the values being assigned to them.
+
+A getter method is used to retrieve the value of a property and is defined using the "@property decorator" and a method with no arguments. The method should return the value of the property that it is accessing.
+
+A setter method is used to set the value of a property and is defined using the "@property_name.setter decorator", where property_name is the name of the property. The setter method should take one argument, which represents the new value being assigned to the property.
+#example for the getter and setter methods
+class person:
+    def __init__(self, name, age):
+        self._name = name
+        self._age = age
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        self._name = name
+
+    @property
+    def age(self):
+        return self._age
+
+    @age.setter
+    def age(self, age):
+        self._age = age
+person=person("Rudra",26)
+print(person.name)
+Rudra
+print(person.age)
+26
+person.name="Devi"
+person.age=36
+print(person.name,person.age)
+Devi 36
+5.What is method overriding in python? Write a python code to demonstrate method overriding.
+ Method overriding is a feature in object-oriented programming that allows a subclass to provide a new implementation for a method defined in its superclass. The new implementation in the subclass "overrides" the original implementation in the superclass.
+
+When a method is overridden, the subclass can choose to keep the original behavior of the method or provide a new implementation. The new implementation can either extend or modify the original behavior.
+#python code for method of overriding.
+class animal:
+    def make_sound(self):
+        print("Animal is making a sound")
+
+class dog(animal):
+    def make_sound(self):
+        print("bow! bow!")
+
+class cat(animal):
+    def make_sound(self):
+        print("Meow! Meow!")
+dog = dog()
+dog.make_sound()
+bow! bow!
+cat = cat()
+cat.make_sound()
+Meow! Meow!
+ 
