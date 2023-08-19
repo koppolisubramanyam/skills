@@ -1,0 +1,100 @@
+
+Assignment
+1.What is multiprocessing in python? Why is it useful?
+Multiprocessing in Python is a way of executing multiple processes in parallel, using multiple CPUs or cores. It allows you to take advantage of the computational power of modern computers by running multiple tasks concurrently.
+
+The multiprocessing module in Python provides a way to create and manage processes in a simple and efficient manner. It allows you to split a task into multiple smaller subtasks, and then execute each of these subtasks in parallel, thus reducing the overall execution time.
+
+Multiprocessing is particularly useful when working with CPU-bound tasks, where the processing time is dominated by CPU usage rather than I/O operations. By using multiple processes, you can perform these tasks more quickly and efficiently.
+
+Another advantage of multiprocessing is that it allows you to execute tasks independently of each other, which can help you avoid issues with resource contention and conflicts. For example, if you have multiple threads trying to access the same resource simultaneously, you may run into issues with race conditions or deadlocks. Multiprocessing avoids these issues by giving each process its own resources to work with.
+
+Overall, multiprocessing can greatly improve the performance and scalability of your Python programs, particularly when dealing with computationally intensive tasks.
+2.What are the differences between multiprocessing and multithreading?
+Multiprocessing and multithreading are both techniques used for achieving concurrency in computer programs, but there are several differences between them:
+
+1.Execution: In multiprocessing, multiple processes run concurrently, while in multithreading, multiple threads run concurrently within the same process.
+
+2.Memory: In multiprocessing, each process has its own memory space, while in multithreading, threads share the same memory space.
+
+3.Communication: Inter-process communication (IPC) is typically slower and more complex than inter-thread communication (ITC), which is faster and simpler.
+
+4.Overhead: The overhead of creating and managing processes is generally higher than the overhead of creating and managing threads, which makes multiprocessing less efficient in some cases.
+
+5.Scalability: Multiprocessing can take advantage of multiple CPUs or cores, while multithreading is limited to a single CPU or core.
+ In general, multiprocessing is better suited for tasks that are CPU-bound and require parallel execution, while multithreading is better suited for tasks that are I/O-bound and can benefit from parallel execution but do not require as much CPU usage. However, the choice between multiprocessing and multithreading ultimately depends on the specific requirements of the task at hand.
+3.Write a python code to create a process using the multiprocessing module.
+import multiprocessing
+
+def worker():
+    print("Worker process started")
+    print("Worker process finished")
+
+if __name__ == '__main__':
+    p = multiprocessing.Process(target=worker)
+    p.start()
+    p.join()
+Worker process started
+Worker process finished
+ In this example, we define a worker function that will be executed in a separate process. We then create a new process using the Process class from the multiprocessing module, passing the target parameter to specify the function to be run in the new process.
+
+ We start the process by calling the start() method on the new process object, which will create a new process and start executing the worker function in it.
+
+Finally, we wait for the process to finish by calling the join() method on the process object. This will block the main process until the new process has finished executing.
+4.What is a multiprocessing pool in python? Why is it used?
+In Python's multiprocessing module, a multiprocessing pool is a way of creating a group of worker processes that can execute tasks in parallel. The pool distributes the tasks across the worker processes, and manages the allocation of resources such as CPU time and memory.
+
+ A multiprocessing pool is created using the Pool class in the multiprocessing module. The Pool constructor takes an optional argument processes, which specifies the number of worker processes to create in the pool. If processes is not specified, it defaults to the number of CPUs on the machine.
+
+ Once a pool is created, you can submit tasks to it using the apply(), map(), or imap() methods. These methods distribute the tasks across the worker processes in the pool, and return the results of the tasks.
+
+Multiprocessing pools are used to parallelize the execution of a large number of tasks that can be run independently of each other. They can greatly improve the performance of programs that perform CPU-bound tasks by taking advantage of multiple CPU cores or processors.
+ Using a multiprocessing pool is often simpler and more efficient than managing individual processes manually, since the pool handles the allocation of resources and the distribution of tasks automatically. It also provides a high-level interface for submitting tasks and retrieving results, which can be easier to use than lower-level primitives such as pipes and queues.
+
+Overall, a multiprocessing pool is a powerful tool for parallelizing the execution of tasks in Python, and can help you take advantage of the full power of modern multicore and multiprocessor systems.
+5.How can we create a pool of worker processes in python using the multiprocessing module?
+To create a pool of worker processes in Python using the multiprocessing module, we can follow these steps:
+
+1.Import the multiprocessing module.
+
+2.Create a function that defines the work that each worker process will do. This function should take one  or more arguments, and return a value.
+
+3.Create a pool of worker processes using the Pool class, and specify the number of worker processes to use.
+
+4.Submit work to the pool using one of the apply, map, or imap methods. These methods take the work function and its arguments as inputs, and return the results.
+The apply method executes the work function with the specified arguments, and returns the result. The map method applies the work function to each element in a list of arguments, and returns a list of results. The imap method is similar to map, but returns an iterator that allows you to retrieve results as they become available.
+
+5.Close the pool and join the worker processes.
+import multiprocessing
+
+def work_function(arg1, arg2):
+    return result
+
+if __name__ == '__main__':
+    pool = multiprocessing.Pool(processes=4)
+    result = pool.apply(work_function, args=(arg1, arg2))
+    results = pool.map(work_function, [(arg1, arg2), (arg3, arg4), ...])
+    pool.close()
+    pool.join()
+6.Write a python program to create 4 processes, each process should print a different number using the multiprocessing module in python.
+import multiprocessing
+
+def print_number(num):
+    print(num)
+
+if __name__ == '__main__':
+    processes = []
+    for i in range(4):
+        process = multiprocessing.Process(target=print_number, args=(i,))
+        processes.append(process)
+        process.start()
+    for process in processes:
+        process.join()
+0
+1
+2
+3
+This code creates a list of 4 Process objects, each of which is initialized with a target function (print_number) and an argument (i). The start method is called on each Process object to start a new process for each one. Finally, the join method is called on each Process object to wait for each process to finish.
+
+When the program is run, it will create 4 processes, each of which will print a different number from 0 to 3, in no particular order. The if __name__ == '__main__': block is used to ensure that the code inside is only executed when the program is run as a standalone script, and not when it is imported as a module.
+ 
