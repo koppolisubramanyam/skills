@@ -1,0 +1,169 @@
+
+Assignment
+1.Create a Pandas Series that contains the following data: 4, 8, 15, 16, 23, and 42. Then, print the series.
+import pandas as pd
+
+series = pd.Series([4, 8, 15, 16, 23, 42])
+
+print(series)
+0     4
+1     8
+2    15
+3    16
+4    23
+5    42
+dtype: int64
+2.Create a variable of list type containing 10 elements in it, and apply pandas.Series function on the variable print it.
+import pandas as pd
+
+my_list = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+
+series = pd.Series(my_list)
+
+print(series)
+0     10
+1     20
+2     30
+3     40
+4     50
+5     60
+6     70
+7     80
+8     90
+9    100
+dtype: int64
+3.Create a Pandas DataFrame that contains the following data:
+  Name              Age           Gender
+
+  Alice              25            Female
+  Bob                30            Male
+  Claire             27            Female
+
+
+Then, print the DataFrame.
+
+import pandas as pd
+
+data = {
+    'Name': ['Alice', 'Bob', 'Claire'],
+    'Age': [25, 30, 27],
+    'Gender': ['Female', 'Male', 'Female']
+}
+
+df = pd.DataFrame(data)
+
+print(df)
+     Name  Age  Gender
+0   Alice   25  Female
+1     Bob   30    Male
+2  Claire   27  Female
+4.What is ‘DataFrame’ in pandas and how is it different from pandas.series? Explain with an example.
+In pandas, a DataFrame is a 2-dimensional labeled data structure that can hold data in various formats like lists, dictionaries, or NumPy arrays. It is a table-like data structure with rows and columns, similar to a spreadsheet or SQL table. The DataFrame is a fundamental data structure in pandas, used for data analysis, manipulation, and cleaning tasks.
+
+On the other hand, a Series is a one-dimensional labeled array that can hold data in various formats, such as integer, float, string, and so on. It is similar to a column in a DataFrame or a dictionary where each value is assigned a label or an index. Series can be considered as a building block for a DataFrame since a DataFrame can be created by combining multiple Series.
+
+example for the DataFrame
+import pandas as pd
+
+data = {
+    'City': ['Paris', 'Paris', 'London', 'London'],
+    'Fruit': ['Apple', 'Banana', 'Apple', 'Banana'],
+    'Sales': [100, 80, 75, 120]
+}
+
+df = pd.DataFrame(data)
+print(df)
+     City   Fruit  Sales
+0   Paris   Apple    100
+1   Paris  Banana     80
+2  London   Apple     75
+3  London  Banana    120
+# we can also extract the specify dataframes as the series
+sales_series = df['Sales']
+print(sales_series)
+0    100
+1     80
+2     75
+3    120
+Name: Sales, dtype: int64
+5.What are some common functions you can use to manipulate data in a Pandas DataFrame? Can you give an example of when you might use one of these functions?
+Pandas provides many useful functions to manipulate data in a DataFrame. Here are some of the common functions you can use:
+
+head(): Returns the first n rows of a DataFrame.
+df.head(10)
+City	Fruit	Sales
+0	Paris	Apple	100
+1	Paris	Banana	80
+2	London	Apple	75
+3	London	Banana	120
+tail(): Returns the last n rows of a DataFrame.
+df.tail(10)
+City	Fruit	Sales
+0	Paris	Apple	100
+1	Paris	Banana	80
+2	London	Apple	75
+3	London	Banana	120
+info(): Provides information about the DataFrame, including the number of rows and columns, data types, and memory usage.
+df.info()
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 4 entries, 0 to 3
+Data columns (total 3 columns):
+ #   Column  Non-Null Count  Dtype 
+---  ------  --------------  ----- 
+ 0   City    4 non-null      object
+ 1   Fruit   4 non-null      object
+ 2   Sales   4 non-null      int64 
+dtypes: int64(1), object(2)
+memory usage: 224.0+ bytes
+describe(): Generates descriptive statistics for the DataFrame, including the count, mean, standard deviation, minimum, maximum, and quartile values.
+df.describe()
+Sales
+count	4.000000
+mean	93.750000
+std	20.564938
+min	75.000000
+25%	78.750000
+50%	90.000000
+75%	105.000000
+max	120.000000
+sort_values(): Sorts the DataFrame by one or more columns.
+df.sort_values('Sales', ascending=False)
+City	Fruit	Sales
+3	London	Banana	120
+0	Paris	Apple	100
+1	Paris	Banana	80
+2	London	Apple	75
+groupby(): Groups the DataFrame by one or more columns and applies an aggregation function to each group.
+df.groupby('Fruit')['Sales'].sum()
+Fruit
+Apple     175
+Banana    200
+Name: Sales, dtype: int64
+pivot_table(): Creates a pivot table from the DataFrame.
+pd.pivot_table(df, index='City', columns='Fruit', values='Sales')
+Fruit	Apple	Banana
+City		
+London	75	120
+Paris	100	80
+6.Which of the following is mutable in nature Series, DataFrame, Panel?
+In pandas, both Series and DataFrame are mutable objects, which means that their values can be modified after they are created.
+
+On the other hand, Panel is a three-dimensional data structure that was introduced in earlier versions of pandas but has since been deprecated. It has been replaced by the MultiIndex data structure which allows for more flexible handling of higher-dimensional data.
+
+7.Create a DataFrame using multiple Series. Explain with an example.
+import pandas as pd
+
+names = pd.Series(['Alice', 'Bob', 'Claire'])
+ages = pd.Series([25, 30, 27])
+genders = pd.Series(['Female', 'Male', 'Female'])
+
+data = {'Name': names, 'Age': ages, 'Gender': genders}
+
+df = pd.DataFrame(data)
+
+print(df)
+     Name  Age  Gender
+0   Alice   25  Female
+1     Bob   30    Male
+2  Claire   27  Female
+ 
