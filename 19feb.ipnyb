@@ -1,0 +1,153 @@
+
+Assignment
+1.What is Flask Framework? What are the advantages of Flask Framework?
+Flask is a lightweight web application framework for Python. It is designed to be simple and easy to use, while still providing the flexibility and power that developers need to build robust web applications.
+
+Some advantages of using Flask Framework are:
+
+Lightweight: Flask is a lightweight framework and has a small footprint. This makes it easy to learn and use, and also makes it fast and efficient.
+
+Flexibility: Flask is very flexible and allows developers to easily customize and extend the framework to suit their specific needs. It does not impose any particular project structure or database architecture.
+
+Extensible: Flask provides a wide range of extensions and libraries that can be used to add functionality to your application. These extensions cover a wide range of areas, such as authentication, database connectivity, caching, and more.
+
+Easy to learn: Flask has a simple and intuitive API that is easy to learn and understand. This makes it a great choice for beginners who want to get started with web development.
+
+Large community: Flask has a large and active community of developers who contribute to the framework and provide support to each other. This means that there are plenty of resources available for learning and troubleshooting.
+
+Scalable: Flask is scalable and can be used to build small, simple applications or large, complex ones. It provides features that help developers to manage and scale their applications as they grow.
+
+Overall, Flask is a powerful and versatile framework that can be used to build a wide range of web applications, from simple prototypes to complex enterprise systems.
+
+2.Create a simple Flask application to display ‘Hello World!!’. Attach the screenshot of the output in Jupyter Notebook.
+First we should install the flask in order to get the output.
+pip install flask
+Collecting flask
+  Downloading Flask-2.2.3-py3-none-any.whl (101 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 101.8/101.8 kB 1.1 MB/s eta 0:00:00a 0:00:01
+Requirement already satisfied: Jinja2>=3.0 in /opt/conda/lib/python3.10/site-packages (from flask) (3.1.2)
+Collecting Werkzeug>=2.2.2
+  Downloading Werkzeug-2.2.3-py3-none-any.whl (233 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 233.6/233.6 kB 3.8 MB/s eta 0:00:00a 0:00:01
+Requirement already satisfied: click>=8.0 in /opt/conda/lib/python3.10/site-packages (from flask) (8.1.3)
+Collecting itsdangerous>=2.0
+  Downloading itsdangerous-2.1.2-py3-none-any.whl (15 kB)
+Requirement already satisfied: MarkupSafe>=2.0 in /opt/conda/lib/python3.10/site-packages (from Jinja2>=3.0->flask) (2.1.1)
+Installing collected packages: Werkzeug, itsdangerous, flask
+Successfully installed Werkzeug-2.2.3 flask-2.2.3 itsdangerous-2.1.2
+Note: you may need to restart the kernel to use updated packages.
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!!'
+
+if __name__ == '__main__':
+    app.run()
+After that we should browse the http://localhost:5000 this in the browser then we will get the output as the Hello World!! in the url
+3.What is App routing in Flask? Why do we use app routes?
+In Flask, App routing is the process of defining URLs or routes that map to specific functions in your Flask application. When a user makes a request to a particular URL or route, Flask will call the associated function and return the result as an HTTP response.
+
+Routes in Flask are defined using the @app.route() decorator. The @app.route() decorator is used to define a URL route and the function that should be called when the route is accessed.
+
+For example, consider the following Flask application:
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+@app.route('/about')
+def about():
+    return 'This is the about page.'
+
+if __name__ == '__main__':
+    app.run()
+In this application, there are two routes defined using the @app.route() decorator. The first route is mapped to the root URL of the application (/), and the second route is mapped to the URL /about. When a user visits the root URL of the application, the hello_world() function will be called and will return the string 'Hello, World!'. When a user visits the URL /about, the about() function will be called and will return the string 'This is the about page.'.
+
+We use app routes in Flask to define the URLs that our application should respond to. By defining app routes, we can map specific URLs to the functions that should handle them, and thus define the behavior of our web application. App routes allow us to create a clean and organized URL structure for our application, making it easier to navigate and understand. They also allow us to create different pages or endpoints for different parts of our application, making it easier to manage and maintain the code.
+
+4.Create a “/welcome” route to display the welcome message “Welcome to ABC Corporation” and a “/”
+  route to show the following details:
+  Company Name: ABC Corporation
+  Location: India
+  Contact Detail: 999-999-9999
+First we should install the flask in order to get the output.
+pip install flask
+Collecting flask
+  Downloading Flask-2.2.3-py3-none-any.whl (101 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 101.8/101.8 kB 1.2 MB/s eta 0:00:00a 0:00:01
+Collecting Werkzeug>=2.2.2
+  Downloading Werkzeug-2.2.3-py3-none-any.whl (233 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 233.6/233.6 kB 3.8 MB/s eta 0:00:00a 0:00:01
+Requirement already satisfied: Jinja2>=3.0 in /opt/conda/lib/python3.10/site-packages (from flask) (3.1.2)
+Collecting itsdangerous>=2.0
+  Downloading itsdangerous-2.1.2-py3-none-any.whl (15 kB)
+Requirement already satisfied: click>=8.0 in /opt/conda/lib/python3.10/site-packages (from flask) (8.1.3)
+Requirement already satisfied: MarkupSafe>=2.0 in /opt/conda/lib/python3.10/site-packages (from Jinja2>=3.0->flask) (2.1.1)
+Installing collected packages: Werkzeug, itsdangerous, flask
+Successfully installed Werkzeug-2.2.3 flask-2.2.3 itsdangerous-2.1.2
+Note: you may need to restart the kernel to use updated packages.
+const_express = require('express');
+const_app = express();
+
+// Welcome route
+app.get('/welcome', (req, res) => {
+  res.send('Welcome to ABC Corporation');
+});
+
+// Details route
+app.get('/', (req, res) => {
+  const_companyDetails = {
+    companyName: 'ABC Corporation',
+    location: 'India',
+    contactDetail: '999-999-9999'
+  };
+  res.json(companyDetails);
+});
+
+// Start the server
+app.listen(3000, () => {
+  console.log('Server started on port 3000');
+});
+After that we should browse the http://localhost:5000 this in the browser then we will get the output as the Hello World!! in the url
+5.What function is used in Flask for URL Building? Write a Python code to demonstrate the working of the url_for() function.
+In Flask, the url_for() function is used for URL building. This function generates a URL for a given view function. It takes the name of the view function as the first argument and any arguments necessary to generate the URL.
+
+Here's an example Python code that demonstrates the working of the url_for() function in Flask:
+
+from flask import Flask, url_for
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return 'Welcome to my website'
+
+@app.route('/contact')
+def contact():
+    return 'Contact us at: 123-456-7890'
+
+@app.route('/user/<username>')
+def user(username):
+    return f'Hello, {username}'
+
+@app.route('/about')
+def about():
+    home_url = url_for('home')
+    contact_url = url_for('contact')
+    user_url = url_for('user', username='john')
+    return f'This is the about page. Visit the following pages: <br> {home_url} <br> {contact_url} <br> {user_url}'
+
+if __name__ == '__main__':
+    app.run()
+In this example, we have defined four routes using the @app.route decorator. The about() function uses the url_for() function to generate URLs for the home, contact, and user pages. The generated URLs are then displayed in the response.
+
+When we run this code and navigate to the '/about' route, we get a response that displays the URLs for the home, contact, and user pages. The URLs are generated using the url_for() function and include any necessary arguments.
+
+ 
