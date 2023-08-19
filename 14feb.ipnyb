@@ -1,0 +1,154 @@
+
+Assignment
+1.What is multithreading in python? Why is it used? Name the module used to handle threads in python.
+ Multithreading in Python refers to the capability of running multiple threads (lightweight processes) simultaneously within a single program. Each thread runs independently, and they share the same memory space, allowing for more efficient use of resources in the system.
+
+Multithreading is used to perform parallel processing tasks such as handling multiple network connections, processing large amounts of data, or performing complex computations, without blocking the main thread of execution.
+
+"The threading module is used to handle threads in Python." This module provides a simple way to create and manage threads within a Python program. It allows for creating new threads, starting them, and joining them, as well as provides synchronization primitives like locks, events, and semaphores to help manage access to shared resources between threads.
+import threading
+
+def print_numbers():
+    for i in range(1, 11):
+        print(i)
+
+def print_letters():
+    for i in range(ord('a'), ord('k')):
+        print(chr(i))
+
+t1 = threading.Thread(target=print_numbers)
+t2 = threading.Thread(target=print_letters)
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+
+print("Finished")
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+Finished
+2.Why threading module used? Write the use of the following functions
+1.activeCount()
+2.currentThread()
+3.enumerate()
+ The threading module in Python is used to create and manage threads in a program. It provides a simple and easy-to-use interface for creating and managing threads, along with synchronization primitives such as locks and semaphores to manage access to shared resources.
+
+Here are the use cases of the following functions in the threading module:
+1.activeCount(): This function is used to get the number of threads that are currently active and running in the program. It returns the number of thread objects that are currently running or in the "runnable" state. This function is useful for monitoring the status of threads and detecting potential issues such as deadlocks.
+2.currentThread(): This function is used to get a reference to the currently executing thread object. It returns the thread object representing the thread that calls this function. This function is useful for getting information about the current thread, such as its name or ID, and for passing the thread object as an argument to other functions.
+3.enumerate(): This function is used to get a list of all currently active thread objects. It returns a list of all thread objects, including the main thread and any child threads that have been created. This function is useful for monitoring the status of all threads in the program and for performing operations on all threads, such as stopping or joining them.
+3.Explain the following functions
+1.run()
+2.start()
+3.join()
+4.isAlive()
+1.run(): This is a method defined in the Thread class that represents the code that will be executed when the thread starts. It is called automatically when the start() method is called. Typically, you override this method when you subclass Thread to provide your own custom code to be executed in the new thread.
+2.start(): This method is used to start a new thread of execution for the target method specified in the Thread constructor. When start() is called, a new thread is created, and the run() method is called in that new thread. It is important to note that start() does not wait for the thread to complete, it just schedules the thread to run.
+3.join(): This method is used to wait for a thread to complete its execution. When join() is called, the calling thread (i.e., the thread that called join()) blocks until the thread being joined completes its execution. If the thread has already completed, join() returns immediately. This is useful when you want to make sure that a thread has completed before continuing execution in the calling thread.
+4.isAlive(): This method is used to determine if a thread is currently executing. It returns True if the thread is still running and has not yet completed its execution, and False otherwise. This method is useful for monitoring the status of a thread and determining when it has completed its work.
+4.Write a python program to create two threads. Thread one must print the list of squares and thread two must print the list of cubes
+import threading
+
+def print_squares():
+    for i in range(1, 11):
+        print(f"Square of {i} is {i**2}")
+
+def print_cubes():
+    for i in range(1, 11):
+        print(f"Cube of {i} is {i**3}")
+
+t1 = threading.Thread(target=print_squares)
+t2 = threading.Thread(target=print_cubes)
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+
+print("Finished")
+Square of 1 is 1
+Square of 2 is 4
+Square of 3 is 9
+Square of 4 is 16
+Square of 5 is 25
+Square of 6 is 36
+Square of 7 is 49
+Square of 8 is 64
+Square of 9 is 81
+Square of 10 is 100
+Cube of 1 is 1
+Cube of 2 is 8
+Cube of 3 is 27
+Cube of 4 is 64
+Cube of 5 is 125
+Cube of 6 is 216
+Cube of 7 is 343
+Cube of 8 is 512
+Cube of 9 is 729
+Cube of 10 is 1000
+Finished
+5.State advantages and disadvantages of multithreading
+Advantages:
+
+1.Improved performance: Multithreading can improve the performance of a program by allowing multiple tasks to be executed simultaneously. This can lead to faster execution times and better resource utilization.
+
+2.Increased responsiveness: Multithreading can improve the responsiveness of a program by allowing tasks to be executed in the background while the user continues to interact with the application.
+
+3.Resource sharing: Multithreading allows multiple threads to access shared resources such as memory, I/O devices, and network connections. This can reduce the need for expensive synchronization mechanisms and can make programs more efficient.
+
+4.Simplified coding: Multithreading can simplify coding by allowing complex tasks to be broken down into smaller, more manageable subtasks that can be executed concurrently.
+Disadvantages:
+
+1.Complexity: Multithreading can add complexity to a program by requiring synchronization mechanisms to ensure that threads do not interfere with each other. This can make programs harder to develop and debug.
+
+2.Increased resource usage: Multithreading can increase resource usage, especially when many threads are created. This can lead to increased memory usage and CPU utilization, which can impact overall system performance.
+
+3.Race conditions: Multithreading can create race conditions, where two or more threads access a shared resource at the same time, leading to unpredictable results. Race conditions can be difficult to detect and debug.
+
+4.Deadlocks: Multithreading can lead to deadlocks, where two or more threads are blocked waiting for each other to release a resource. Deadlocks can bring a program to a standstill and can be difficult to resolve.
+6.Explain deadlocks and race condition.
+Deadlocks and race conditions are two types of concurrency issues that can occur in multithreaded programs. Here are their definitions and explanations:
+1.Deadlock: A deadlock occurs when two or more threads are blocked waiting for each other to release a resource, resulting in a situation where no thread can proceed. Deadlocks can occur when two or more threads acquire locks on resources in different orders, leading to a circular wait. Deadlocks can also occur when a thread acquires multiple locks and then blocks while waiting for another thread to release a lock that the first thread needs. Deadlocks can be difficult to detect and resolve because they can involve multiple threads and multiple resources.
+2.Race condition: A race condition occurs when two or more threads access a shared resource in an unpredictable order, leading to unpredictable results. Race conditions can occur when threads are not synchronized properly, allowing multiple threads to access a shared resource at the same time. Race conditions can lead to data corruption, incorrect results, and other unexpected behavior. For example, if two threads access the same variable and try to modify it at the same time, the final value of the variable can be unpredictable.
+import threading
+
+count = 0
+
+def increment():
+    global count
+    for i in range(100000):
+        count += 1
+
+t1 = threading.Thread(target=increment)
+t2 = threading.Thread(target=increment)
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+
+print(f"Final count: {count}")
+Final count: 200000
+ 
