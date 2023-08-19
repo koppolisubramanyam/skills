@@ -1,0 +1,112 @@
+
+Assignment
+1.What are the characteristics of the tuples? Is tuple immutable.
+Tuple:
+    A tuple is an ordered sequence of elements of same or differnet data types, such as integer, float, string, list or even a tuple. Elements of a tuple are enclosed in parenthesis(round brackets) and are seperated by commas.   
+Characteristics of tuples:
+The Characteristics of tuples are:
+Tuples are ordered, indexed collections of data. Similar to string indices, the first value in the tuple with have the index[0], the second value[1], and so on.
+
+Tuples can store duplicate values
+
+Once data is assigned to a tuple, the values cannot be changed.
+
+Tuples allow you to store several data items in one variable. You can choose to store only one kind of data in a tuple or mix it up as needed.
+
+YES, the tuples are immutable.
+2.What are the two tuple methods in python? Give an example of each method. Give a reason why tuples have only two in-built methods as compared to lists.
+The two tuple methods in python are:
+count() method.
+
+index() method.
+
+count() method: The count() method returns the number of times a specified value appears in the tuple.
+
+Syntax: tuple.count(value)
+
+index() method: The index() method finds the first occurrence of the specified value and this method raises an exception if the value is not found
+
+Syntax: tuple.index(value)
+
+# example for the count() method 
+tuple1=(1,3,7,8,7,5,4,6,8,5)
+x=tuple1.count(5)
+print(x)
+2
+# example for the index() method
+tuple2=(1,3,7,8,7,5,4,6,8,5)
+x=tuple2.index(8)
+print(x)
+3
+Tuples have only two built-in methods because tuples are more memory efficient than the lists and tuples are immutable that we can't make any changes once declared the tuple.
+3.Which collection datatypes in python do not allow duplicate items? Write a code using a set to remove duplicates from the given list.
+     List=[1,1,1,2,1,3,1,4,2,1,2,2,2,3,2,4,3,1,3,2,3,3,3,4,4,1,4,2,4,3,4,4]
+The "set" datatype in python do not allow duplicate items.
+#removing the duplicate elements from the list
+List=[1,1,1,2,1,3,1,4,2,1,2,2,2,3,2,4,3,1,3,2,2,2,2,4,4,1,4,2,3,4,4]
+elements=[*set(List)]
+print(elements)
+[1, 2, 3, 4]
+4.Explain the difference between the union() and update() methods for a set. Give an example of each method.
+union() method:
+            The union() method returns a set that contains all items from the original set, and all items from the specified set. You can sepcify as many sets you want, separated by commas. It does not have to be a set, it can be any iterabel object.
+            If an item is present in more than one set, the result will contain only one appearance of this item.
+
+  Syntax:  set.union(set1, set2,....)
+#example of the union() method for a set
+x={"pwskills","datascience"}
+y={"PWSKILLS 1","DATASCIENCE 1"}
+z=x.union(y)
+print(z)
+update() method:
+             The update() method updates the current set, by adding items from another set(or any other iterable). If an item is present in both sets, only one appearance of this item will be present in the updated set.
+
+    Syntax:   set.update(set)
+#example of the update() method for a set
+x={1,2,3}
+y={2,3,5,7}
+x.update(y)
+print(x)
+{1, 2, 3, 5, 7}
+5.What is dictionary? Give an example.Also, state whether a dictionay is ordered or unordered.
+Dictionary:
+        The dictionary is an unordered collection that contains key:value pairs separated by commas inside curly brackets. Each key-value pair in the dictionary maps the key to its associated value making it more optimized. A dictionary in python is declaredd by enclosing a comma seperated list of key-value pairs using curly braces{}. Eacj key is separated from its value by a colon(:), while commas seperate each element.
+       Dictionary is classified into two elements: keys and values
+       -> Keys will be a single element.
+       -> Values can be a list or list within a list, numbers, etc..
+dict1={"name":"Rudra","age":26,"sex":"male"}
+print(dict1)
+{'name': 'Rudra', 'age': 26, 'sex': 'male'}
+dict2={"city1":"Hyderabad","city2":"Bangalore","city3":"Mumbai"}
+print(dict2)
+{'city1': 'Hyderabad', 'city2': 'Bangalore', 'city3': 'Mumbai'}
+Dictionary is unordered collection.
+6.Can we create a nested dictionary? If so, please give an example by creating a simple one-level nested dictionary.
+YES, we can create a nested dictionary. A nested dictionary is a dictionary inside a dictionary. It's a collection of dictionaries into one single dictionary.
+#example for creating a simple one-level nested dictionary
+nested_dict={"dictA":{"key_1": "value_1"},"dictB":{"key_2": "value_2"}}
+print(nested_dict)
+{'dictA': {'key_1': 'value_1'}, 'dictB': {'key_2': 'value_2'}}
+7.Using setdefault() method, create key named topics in the given dictionary and also add the values of the key as this list ["Python","course","Deep Learning"]
+dict1={"language":"Python","course":"Data Science Masters"}
+
+dict1={"language":"Python","course":"Data Science Masters"}
+dict1.setdefault("topics")
+dict1.update({"topics":["Python","course","Deep Learning"]})
+print(dict1)
+{'language': 'Python', 'course': 'Data Science Masters', 'topics': ['Python', 'course', 'Deep Learning']}
+8.What are the three view objects in dictionaries? Use the three in-built methods in python to display these three view objects for the given dictionary.
+dict1={"sport":"Cricket","Teams":["India","Australia","England","South Africa","Sri Lanka",New Zealand"]}
+
+The main view objects of dictionary in python are keys, values and items.
+#to display the the three view objects for the given dictionary
+dict1={"sport":"Cricket","Teams":["India","Australia","England","South Africa","Sri Lanka","New Zealand"]}
+keys=dict1.keys()
+values=dict1.values()
+items=dict1.items()
+print(keys)
+print(values)
+print(items)
+dict_keys(['sport', 'Teams'])
+dict_values(['Cricket', ['India', 'Australia', 'England', 'South Africa', 'Sri Lanka', 'New Zealand']])
+dict_items([('sport', 'Cricket'), ('Teams', ['India', 'Australia', 'England', 'South Africa', 'Sri Lanka', 'New Zealand'])])
