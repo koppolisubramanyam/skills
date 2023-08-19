@@ -1,0 +1,235 @@
+
+Assignment
+1.Explain Class and Objet with respect ot Object-Oriented Programming. Give a suitable example.
+CLASS:
+-> In object-oriented programming, a class is a blueprint for creating objects(a particular data structure),providing intial values for state(memeber variables or attributes), and implementations of behaviour(member functios or methods).
+-> The user-defined objects are created using the "class" keyword. The class is a blueprint that defines a nature of future object. An instance is a specific object created from a particular class. Classes are used to create and manage new objects and support inheritance- a key ingredient in object-oriented programming and a mechanism ofreusing code.
+-> A class is a way of organizing information about a type of data so a programmer can reuse elements when making multiple instances of that data type.
+For example, if a programmer wanted to make three instances of Car, maybe a BMW, a Ferrari, and a Ford instance. The car class would allow the programmer to store similar information that is unique to each car(they are different models, and maybe different colors, etc.) and associate the appropriate information with each car.
+  -> In object-oriented programming, a class is a template definition of the methods and variables in a particular kind of object. Thus, an object is a specific instance of a class; it contains real values instead of variables.
+  -> The class is one of the defining ideas of object-oriented programming. The important ideas about classes are:
+
+  1. A class can have subclasses that can inherit all or some of the characteristics of the class. In relation to each subclass, the class becomes the superclass.
+  2. Subclasses can also define their own methods and variables that are not part of their superclasses.
+  3. The structure of a class and its subclasses is called the class hierarchy.
+OBJECT:
+-> In object-oriented programming(OOP),objects are the things you think about first in designing a program ad they are eventually derived from the process. In bedtweem each object, and even more gemeric classes are defined so that objects can share models and reuse the class definitions in their code. Each object is an instance of a particular class or subclass with the class's own methods or procedures and data variables. An object is what actually runs in the computer.
+
+CHARACTERISTICS OF AN OBJECT:
+
+   ->All individual objects possess three basic characteristics--identity,state and behavior.Understanding these characteristics is crucial to knowing how objets and object-oriented logic work.
+
+   1.Identity: It means that each object has its own object identifier and can be differentiated from all other objects. Each objects name, or identity, is unique and distinct from other objects.
+   2.State: It refers to the properties of an object. For example, values of variables in the object contain data that can be added, changed or deleted.
+   3.Behavior: It refers to actions that the object can take. For example, one object can respond to another object to carry out software functions.
+Example for objects are the real world objects: your dog, your desk, your bag, your bike and many more around us.
+2.Name the four pillars of OOPs.
+The four pillars of OOPs are:
+Inheritance
+Encapsulation
+Abstraction
+Polymorphism
+1.Inheritance:
+         => Inheritance is the ability of one class to inherit the attributes and methods of another class. This is useful because it allows you to create subclasses that are specialized versions of a parent class. For example, you could have a parent class.For example, you could have a parent class called Vehicle, with subclasses Car and Truck. The Vehicle class would contian general attributes and methods that are common to all vehicles, such as the number of wheels and the color.
+
+2.Encapsulation:
+          => Encapsulation is the process of hiding information within an object so that it cannot be accessed directly from ouside the object. This allows you to control how data is used and prevents accidental modification of data. For example,you could have a class called Person with attributes such name and age. You could then create methods to get and set these attributes. This would allow ou to control how the data is used, and you could add validation to ensure that the data is valid before it is set.
+3.Abstraction:
+           => Abstraction is the process of hiding the implementation details of an object so that it can be used without understanding how it works, This allows you to create code that is easy to use and maintian.For example, you could have a class called Vehicle with methods such as drive and stop, the details of how these methods work are hidden from the user, so they are can simply call the methods and trust that they will woork as expected.
+4.Polymorphism:
+            => polymorphism is the ability of an object to take on multiple forms. This is useful because it allows you to create code the that is more flexible and adaptable. FOr example, you could have a class called Shape with subclasses Circle and Rectangle. The Shape class would contain general methods such as getArea and getPerimeter. The Circle and Rectagle subclasses would then each have their own unique implementation of these methods.
+3.Explain why the init() function is used. Give a suitable example.
+In an object-oriented approach, the init method is the Python equivalent of the c++ constructor. Every time an object is created from a class, the init function is called. The init method only allows the class to initialize the object's attributes. It is only used within classes.
+=> __init__() function is defined just like a regular python function. Self must be the first agrument. After that, you can pass arguments of your requirements. The logic of the function comes in the function definition part.
+
+Syntax:
+
+     class Songs:
+         def __init__(self,arguments):
+            #function definition
+
+
+
+
+=> The __init__method lets the class initialize the object's attributes and serves no other purpose. It is only used within the classes.This method is useful to do any initialization you want to do with you object.
+#program by using the __init__ function
+class Person:
+    def __init__(self,name,age,sex):
+        self.name=name
+        self.age=age
+        self.sex=sex
+p1=Person("Rudra",26,"male")
+
+print(p1.name)
+print(p1.age)
+print(p1.sex)
+Rudra
+26
+male
+4.Why self is used in OOPs?
+The self variable is used to represent the instance of the class which is often used in object-oriented programming. It works as a reference to the object.
+ => The method of instance_method is a regular instance method. The method accepts one single parameter->self. The self variable points to an instance of the class myClass when the method is revoked. Though, the method takes only one parameter here, it can also accept more than one parameter.
+
+ => The instance methods can easily access different attributes and other methods on the same object with the help of the self variable. The self variable also has the power to modify the state of an object and using the self._class_ attribute, instance methods can also access the class. Thus, the instance methods are also able to modify the class state.
+#1.Example for self variable.
+class check:
+    def __init__(self):
+        print("Address of self = ",id(self))
+  
+obj = check()
+print("Address of class object = ",id(obj))
+  
+Address of self =  140063500627216
+Address of class object =  140063500627216
+#2.Example for the self variable
+class Person:
+    def __init__(self,name,age,sex):
+        self.name=name
+        self.age=age
+        self.sex=sex
+p1=Person("Devi",35,"female")
+
+print(p1.name)
+print(p1.age)
+print(p1.sex)
+Devi
+35
+female
+5.What is inheritance? Give an example for each type of inheritance.
+1.Inheritance:
+         => Inheritance is the ability of one class to inherit the attributes and methods of another class. This is useful because it allows you to create subclasses that are specialized versions of a parent class. For example, you could have a parent class.For example, you could have a parent class called Vehicle, with subclasses Car and Truck. The Vehicle class would contian general attributes and methods that are common to all vehicles, such as the number of wheels and the color.
+
+      => The interesting thing is, along with the inherited properites and methods, a child class can have its own properties and methods. There are five types of inheritance, they are;
+
+  1. Single inheritance
+  2. Multiple inheritance
+  3. Multilevel inheritance
+  4. Hierarchical inheritance
+  5. Hybrid(virtual) inheritance
+1.Single inheritance:
+              => This is a form of inheritance in which a class inherits only one parent class.This is the simple form of inheritance and hence also referred to as simple inheritance.
+#example program for single inheritance.
+class Parent:
+    def f1(self):
+        print("Function of parent class.")
+        
+class Child(Parent):
+    def f2(self):
+        print("Function of child class.")
+        
+object1=Child()
+object1.f1()
+object1.f2()
+Function of parent class.
+Function of child class.
+2. Multiple inheritance:
+     => An inheritance becomes multiple inheritances when a class inherits more than one parent class. The child class after inheriting properties from various parent classes has to all of their objects.
+#example program for multiple inheritance.
+class Parent_1:
+    def f1(self):
+        print("Function of parent_1 class.")
+        
+class Parent_2:
+    def f2(self):
+        print("Function of parent_2 class.")
+        
+class Child(Parent_1,Parent_2):
+    def f3(self):
+        print("Function of child class.")
+        
+object_1 = Child()
+object_1.f1()
+object_1.f2()
+object_1.f3()
+Function of parent_1 class.
+Function of parent_2 class.
+Function of child class.
+3.Multi-level inheritance:
+        => For example, a class_1 is inherited by a class_2 and this class_2 and this goes on. This is known as the multi-level inheritance. 
+#example program for multi-level inheritance.
+class Parent:
+    def f1(self):
+        print("Function of parent class.")
+        
+class Child_1(Parent):
+    def f2(self):
+        print("Function of child_1 class.")
+        
+class Child_2(Child_1):
+    def f3(self):
+        print("Function of child_2 class.")
+        
+obj_1=Child_1()
+obj_2=Child_2()
+
+obj_1.f1()
+obj_1.f2()
+
+print(" ")
+obj_2.f1()
+obj_2.f2()
+obj_2.f3()
+Function of parent class.
+Function of child_1 class.
+ 
+Function of parent class.
+Function of child_1 class.
+Function of child_2 class.
+4.Hierarchical inheritance:
+       => In this, various classes inherit a single parent class. The example given in the introduction of the inheritance is an examplef of Hierarchical inheritance since classes BMW and Audi inheirt class CAr.
+#example program for the Hierarchical inheritance.
+class Parent:
+    def f1(self):
+        print("Function of parent class.")
+
+class Child_1(Parent):
+    def f2(self):
+        print("Function of child_1 class.")
+
+class Child_2(Parent):
+    def f3(self):
+        print("Function of child_2 class.")
+
+obj_1 = Child_1()
+obj_2 = Child_2()
+
+obj_1.f1()
+obj_1.f2()
+
+print('\n')
+obj_2.f1()
+obj_2.f3()
+Function of parent class.
+Function of child_1 class.
+
+
+Function of parent class.
+Function of child_2 class.
+5.Hybrid(virtual) inheritance:
+          =>  When there is a combination of more than one form of inheritance, it is known as hybrid inheritance. It will be more clear after this example:
+#example program for Hybrid inheritance.
+def f1(self):
+    print("Function of parent class.")
+
+class Child_1(Parent):
+    def f2(self):
+        print("Function of child_1 class.")
+
+class Child_2(Parent):
+    def f3(self):
+        print("Function of child_2 class.")
+
+class Child_3(Child_1, Child_2):
+    def f4(self):
+        print("Function of child_3 class.")
+
+obj = Child_3()
+obj.f1()
+obj.f2()
+obj.f3()
+obj.f4()
+Function of parent class.
+Function of child_1 class.
+Function of child_2 class.
+Function of child_3 class.
+ 
