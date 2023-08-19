@@ -1,0 +1,162 @@
+
+Assignment
+1.What is MongoDB? Explain non-relational databases in short. In which scenarios it is preferred to use MongoDB over SQL databases?
+MongoDB is a popular document-oriented NoSQL database that allows you to store and manipulate data in a flexible and scalable way. It is designed to handle large volumes of data with high performance, and is particularly well-suited for web applications and other use cases that require fast and flexible access to data.
+
+Non-relational databases, also known as NoSQL databases, are databases that do not use the traditional table-based relational database model. Instead, they use various data models, such as document-based, key-value, or graph-based, to store and manage data. NoSQL databases are known for their flexibility, scalability, and performance, and they are often used in situations where traditional SQL databases are not well-suited, such as big data and real-time applications.
+
+MongoDB is preferred over SQL databases in a number of scenarios, including:
+
+When you have large amounts of unstructured or semi-structured data, such as JSON documents, that do not fit neatly into the rows and columns of a relational database.
+
+When you need to store and access data in a highly scalable and flexible manner, such as in web applications that require rapid development and deployment of new features.
+
+When you need to work with data in real-time, such as in real-time analytics or data processing applications.
+
+When you need to handle a large number of concurrent users or requests, as MongoDB is designed to handle high volumes of traffic and requests.
+
+Overall, MongoDB is a powerful and flexible NoSQL database that is well-suited for many modern application use cases, particularly those that require high performance and scalability.
+
+2.State and Explain the features of MongoDB.
+MongoDB is a popular NoSQL document-oriented database that offers a number of features and capabilities. Here are some of the key features of MongoDB:
+
+Document-Oriented: MongoDB is a document-oriented database, which means it stores data in flexible, JSON-like documents. This makes it well-suited for applications with highly variable or unstructured data, such as social media, e-commerce, or content management systems.
+
+Flexible Schema: MongoDB allows you to store data without a predefined schema, which means you can change the structure of your data as your application evolves. This makes it easy to add or remove fields, or change data types, without having to worry about complex migrations.
+
+High Scalability: MongoDB is highly scalable, and can handle large volumes of data and traffic. It can be distributed across multiple servers or data centers, and can support automatic sharding and replication.
+
+Indexing: MongoDB supports a range of indexing options, including multi-key, text, and geospatial indexes. This makes it easy to search and retrieve data quickly and efficiently.
+
+Aggregation Framework: MongoDB includes a powerful aggregation framework that allows you to analyze and process data in a variety of ways. This includes grouping, sorting, filtering, and other operations that are commonly used in analytics and reporting.
+
+Ad Hoc Queries: MongoDB supports ad hoc queries, which means you can query your data in a variety of ways without having to predefine the query in advance. This makes it easy to explore and analyze your data in real-time.
+
+Overall, MongoDB offers a powerful and flexible set of features that are well-suited for modern application development and data management needs. Its flexible schema, scalability, indexing, and aggregation capabilities make it a popular choice for a wide range of use cases, from e-commerce and social media to big data analytics and real-time data processing.
+
+3.Write a code to connect MongoDB to Python. Also, create a database and a collection in MongoDB.
+import pymongo
+
+connection_string = "mongodb+srv://<username>:<password>@<cluster-url>/test?retryWrites=true&w=majority"
+
+client = pymongo.MongoClient(connection_string)
+
+mydb = client["mydatabase"]
+
+mycollection = mydb["mycollection"]
+
+mydocument = {"name": "rudra", "address": "mumbai 37/B"}
+x = mycollection.insert_one(mydocument)
+
+print(x.inserted_id)
+In this code, we first import the pymongo module, which is a Python driver for MongoDB. We then replace the connection_string variable with the connection string for our MongoDB Atlas instance.
+
+We then create a MongoClient object with the connection string, which establishes a connection to the MongoDB instance. We use the client object to create a new database called "mydatabase" and a new collection called "mycollection".
+
+We then create a new document called mydocument, which is a Python dictionary that represents a JSON-like document. We use the insert_one() method of the mycollection object to insert the document into the collection, and we print the ID of the inserted document.
+
+4.Using the database and the collection created in question number 3, write a code to insert one record, and insert many records. Use the find() and find_one() methods to print the inserted record.
+import pymongo
+
+connection_string = "mongodb+srv://<username>:<password>@<cluster-url>/test?retryWrites=true&w=majority"
+
+client = pymongo.MongoClient(connection_string)
+
+mydb = client["mydatabase"]
+
+mycollection = mydb["mycollection"]
+
+record = {"name": "Rudra", "age": 28, "city": "Mumbai"}
+inserted_record = mycollection.insert_one(record)
+
+print("Inserted record ID:", inserted_record.inserted_id)
+
+records = [
+    {"name": "Dittu", "age": 30, "city": "Benguluru"},
+    {"name": "Chintu", "age": 35, "city": "Hyderabad"},
+    {"name": "Bunny", "age": 40, "city": "Pune"},
+]
+inserted_records = mycollection.insert_many(records)
+
+print("Inserted record IDs:", inserted_records.inserted_ids)
+
+first_record = mycollection.find_one({"_id": inserted_record.inserted_id})
+print("First inserted record:", first_record)
+
+all_records = mycollection.find()
+print("All inserted records:")
+for record in all_records:
+    print(record)
+5.Explain how you can use the find() method to query the MongoDB database. Write a simple code to demonstrate this.
+The find() method in MongoDB is used to query the database for documents that match a certain set of criteria. The find() method returns a cursor that can be used to iterate over the matching documents.
+
+The find() method takes an optional argument that specifies the query criteria, which is a document that specifies the fields to match. The criteria document is usually specified as a Python dictionary. For example, to find all documents in a collection where the "city" field is "New York", we could use the following query:
+
+query = {"city": "New York"}
+cursor = mycollection.find(query)
+import pymongo
+
+connection_string = "mongodb+srv://<username>:<password>@<cluster-url>/test?retryWrites=true&w=majority"
+
+client = pymongo.MongoClient(connection_string)
+
+mydb = client["mydatabase"]
+mycollection = mydb["mycollection"]
+
+mycollection.insert_many([
+    {"name": "Ramesh", "age": 25, "city": "New York"},
+    {"name": "Suresh", "age": 30, "city": "London"},
+    {"name": "Naresh", "age": 35, "city": "Paris"},
+    {"name": "Mahesh", "age": 40, "city": "Tokyo"}
+])
+
+query = {"age": {"$gte": 30}}
+cursor = mycollection.find(query)
+
+for document in cursor:
+    print(document)
+In this code, we first connect to the MongoDB instance and select the "mydatabase" database and the "mycollection" collection as before. We then insert some sample data into the collection using the insert_many() method.
+
+We then use the find() method to query the collection for documents where the "age" field is greater than or equal to 30. We specify the query criteria as a dictionary that uses the $gte operator to match documents where the "age" field is greater than or equal to 30.
+
+We then use a for loop to iterate over the cursor object and print each matching document. The output of this code would be all documents where the "age" field is greater than or equal to 30.
+
+6.Explain the sort() method. Give an example to demonstrate sorting in MongoDB.
+The sort() method is used in MongoDB to sort the results of a query in ascending or descending order based on one or more fields. The sort() method takes a document that specifies the fields to sort on and the direction of the sort (ascending or descending). The document should use field names as keys and the value should be either 1 for ascending order or -1 for descending order.
+
+Here's an example to demonstrate sorting in MongoDB. Suppose we have a collection called "mycollection" with documents that have fields "name", "age", and "city". We want to sort the documents in descending order based on the "age" field. We can do this using the sort() method as follows:
+
+import pymongo
+
+connection_string = "mongodb+srv://<username>:<password>@<cluster-url>/test?retryWrites=true&w=majority"
+
+client = pymongo.MongoClient(connection_string)
+
+mydb = client["mydatabase"]
+mycollection = mydb["mycollection"]
+
+query = {"city": "New York"}
+results = mycollection.find(query).sort("age", -1)
+
+for result in results:
+    print(result)
+In this example, we first connect to the MongoDB instance and select the "mydatabase" database and the "mycollection" collection as before. We then use the find() method to query the collection for all documents where the "city" field is "New York".
+
+We then use the sort() method to sort the results in descending order based on the "age" field. The sort() method takes the field name "age" as the first argument and the value -1 to indicate that the results should be sorted in descending order.
+
+We then use a for loop to iterate over the sorted results and print each document. The output of this code would be all documents where the "city" field is "New York", sorted in descending order based on the "age" field.
+
+7.Explain why delete_one(), delete_many(), and drop() is used.
+In MongoDB, delete_one(), delete_many(), and drop() are used to remove documents and collections from a database.
+
+delete_one(filter) method is used to remove a single document that matches the filter. If multiple documents match the filter, only the first document will be deleted.
+
+delete_many(filter) method is used to remove all documents that match the filter. If no documents match the filter, nothing will be deleted.
+
+drop() method is used to remove an entire collection from a database. This will permanently delete all documents in the collection.
+
+These methods are useful for managing the contents of a MongoDB database. For example, you may want to delete all documents that match a certain criteria, or remove a collection that is no longer needed. It is important to use caution when deleting documents or collections, as this cannot be undone and may result in data loss. It is recommended to make a backup of the database before performing any deletion operation.
+
+Overall, delete_one(), delete_many(), and drop() are used to manage the contents of a MongoDB database and provide flexibility in deleting data.
+
+ 
